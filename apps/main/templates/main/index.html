@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'main/main.css' %}">
+</head>
+<body>
+    <h1>Hello World</h1>
+    <hr>
+    <form action="/go" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="fm-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username">
+        </div>
+        <div class="fm-group">
+            <label for="pic">Picture</label>
+            <input type="file" id="pic" name="pic">
+        </div>
+        <button>Submit</button>
+    </form>
+    <hr>
+    {% for user in users %}
+    <div class="profile">
+        <h4>{{ user.username }}</h4>
+        <img src="{{ MEDIA_URL }}{{ user.pic.url }}" alt="profile_{{user.id}}">
+    </div>
+    {% endfor %}
+</body>
+</html>

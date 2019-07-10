@@ -1,0 +1,6 @@
+from django.db import models
+
+# Create your models here.
+class Profile(models.Model):
+    username = models.CharField(max_length=45)
+    pic = models.FileField(upload_to='uploads/')
